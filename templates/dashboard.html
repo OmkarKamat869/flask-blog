@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<header class="masthead" style="background-image: url('{{ url_for('static',filename='img/home-bg.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Admin Panel</h1>
+            <span class="subheading">A blog by programmers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+<div class="container">
+              
+  <table class="table table-bordered">
+    <thead>
+ <h1>Basic Actions</h1>
+ <div class="my-4 d-flex justify-content-between">
+              <a class="btn btn-danger" href="/edit/0">Click to add a new post</a>
+          <form action="/logout" ><a class="btn btn-danger" href="/logout">Logout</a></form>
+ </div>
+        
+<br><br><br>
+
+
+
+<h1>File Uploader</h1>
+ <form action="/uploader" method="post" enctype="multipart/form-data">
+   <input type="file" name="file1">
+   <button class="btn btn-primary">submit</button>
+ </form>
+        
+<br><br><br>
+
+
+
+ <h1>Edit Posts</h1>
+      <tr>
+        <th>S/No</th>
+        <th>Tite</th>
+        <th>Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    {% for post in posts %} 
+    <tbody>
+      <tr>
+        <td>{{post.sno}}</td>
+        <td>{{post.title}}</td>
+        <td>{{post.date}}</td>
+        <td><a href="/edit/{{post.sno}}"><button class="btn btn-primary float-right">Edit</button></a></td>
+        <td><a href="/delete/{{post.sno}}"><button class="btn btn-primary float-right">Delete</button></a></td>
+      </tr>
+      
+
+{% endfor %}
+
+
+
+    </tbody>
+  </table>
+</div>
+
+ {% endblock %}
